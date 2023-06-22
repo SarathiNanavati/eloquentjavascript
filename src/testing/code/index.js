@@ -39,13 +39,28 @@
 // let multiplyByThree = multiply.bind(this, 3);
 // multiplyByThree(8);
 
-// Using Function Clouse
+// Using Function Clouser
 
-let multiply = function (factor) {
-  return function (by) {
-    console.log(factor * by);
-  };
-};
+// let multiply = function (factor) {
+//   return function (by) {
+//     console.log(factor * by);
+//   };
+// };
 
-let multiplyByTwo = multiply(2);
-multiplyByTwo(4);
+// let multiplyByTwo = multiply(2);
+// multiplyByTwo(4);
+
+function* generatorFn() {
+  yield new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve();
+    }, 5000);
+  });
+}
+
+const gen = generatorFn();
+
+gen
+  .next()
+  .value.then(() => console.log("fulfilled"))
+  .catch((e) => console.warn(e));
